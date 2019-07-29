@@ -14,3 +14,10 @@ See `src/i18n` and `src/crx/_locales`
 ## Support
 
 pr and issue are welcome!
+
+## TODO
+
+- [ ] Multi-thread download
+- [ ] Notification sound
+- [ ] New task created animation 
+- [ ] more...
