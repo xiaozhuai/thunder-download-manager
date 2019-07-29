@@ -1,12 +1,12 @@
 # Thunder Download Manager
 
-A super fast download manager for chrome!!!
+一个极速的Chrome下载管理器!!!
 
 ![preview.png](preview.png)
 
-## Chrome Store
+## Chrome 商店
 [https://chrome.google.com/webstore/detail/thunder-download-manager/nllgadppmkoamdlocamdnmimkehhojai](https://chrome.google.com/webstore/detail/thunder-download-manager/nllgadppmkoamdlocamdnmimkehhojai)
 
-## Support
+## 支持
 
-pr and issue are welcome!
+欢迎pr和issue
