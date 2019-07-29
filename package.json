@@ -1,0 +1,22 @@
+{
+    "name": "thunder",
+    "version": "0.1.0",
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build && cp -rf src/crx/* dist/",
+        "pack-zip": "rm -f dist.zip && cd dist && zip -r ../dist.zip ."
+    },
+    "dependencies": {
+        "core-js": "^2.6.5",
+        "element-ui": "^2.11.0",
+        "moment": "^2.24.0",
+        "vue": "^2.6.10",
+        "vuex": "^3.0.1"
+    },
+    "devDependencies": {
+        "@types/chrome": "^0.0.86",
+        "@vue/cli-plugin-babel": "^3.9.0",
+        "@vue/cli-service": "^3.9.0",
+        "vue-template-compiler": "^2.6.10"
+    }
+}

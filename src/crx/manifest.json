@@ -1,0 +1,31 @@
+{
+    "manifest_version": 2,
+    "version": "0.1.0",
+    "short_name": "Thunder",
+    "name": "__MSG_extName__",
+    "description": "__MSG_extDesc__",
+    "default_locale": "en",
+    "icons": {
+        "128": "icon.png"
+    },
+    "permissions": [
+        "alarms",
+        "downloads",
+        "downloads.shelf",
+        "downloads.open",
+        "notifications",
+        "contextMenus",
+        "storage",
+        "unlimitedStorage"
+    ],
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "index.html"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
+    }
+}
