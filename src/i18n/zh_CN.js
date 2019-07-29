@@ -4,7 +4,7 @@ export default {
     clear_button_title: '清除',
     explorer_button_title: '发现',
     clear_all_finished_title: '清除下载完成',
-    clear_all_failed_title: '清除下载失敗',
+    clear_all_failed_title: '清除下载失败',
     settings_panel_title: '设置',
     open_file: '打开文件',
     show_file_mac: '在Finder中显示',
