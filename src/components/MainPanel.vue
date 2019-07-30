@@ -12,7 +12,8 @@
             </div>
         </div>
         <div class="footer">
-            <el-button :title="$tr('settings_button_title')" circle icon="el-icon-setting" @click="preferencePanelVisible = true"/>
+            <el-button :title="$tr('settings_button_title')" circle icon="el-icon-s-tools" @click="preferencePanelVisible = true"/>
+            <el-button :title="$tr('about_button_title')" circle icon="el-icon-info" @click="aboutPanelVisible = true"/>
             <el-popover
                     placement="top"
                     width="160"
@@ -21,7 +22,7 @@
                     <div class="clear-option" @click="clearAllFinished(false)">{{$tr('clear_all_finished_title')}}</div>
                     <div class="clear-option" @click="clearAllFailed()">{{$tr('clear_all_failed_title')}}</div>
                 </div>
-                <el-button :title="$tr('clear_button_title')" circle icon="el-icon-delete" slot="reference"/>
+                <el-button :title="$tr('clear_button_title')" circle icon="el-icon-delete-solid" slot="reference"/>
             </el-popover>
 <!--            <el-button :title="$tr('explorer_button_title')" circle icon="el-icon-s-order"/>-->
         </div>
@@ -29,9 +30,15 @@
                 :title="$tr('settings_panel_title')"
                 :visible.sync="preferencePanelVisible"
                 direction="btt"
-                size="100%"
-                :before-close="handleClose">
+                size="100%">
             <preference-panel/>
+        </el-drawer>
+        <el-drawer
+                :title="$tr('about_panel_title')"
+                :visible.sync="aboutPanelVisible"
+                direction="btt"
+                size="100%">
+            <about-panel/>
         </el-drawer>
     </div>
 </template>
@@ -39,10 +46,11 @@
 <script>
 import FileItem from "./FileItem";
 import PreferencePanel from "./PreferencePanel";
+import AboutPanel from "./AboutPanel";
 
 export default {
     name: "MainPanel",
-    components: {PreferencePanel, FileItem},
+    components: {AboutPanel, PreferencePanel, FileItem},
     created() {
         this.loadHistory();
         this.registerHistoryListener();
@@ -50,7 +58,8 @@ export default {
     data() {
         return {
             clearPopoverVisible: false,
-            preferencePanelVisible: false
+            preferencePanelVisible: false,
+            aboutPanelVisible: false,
         }
     },
     methods: {

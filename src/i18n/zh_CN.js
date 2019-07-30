@@ -1,11 +1,13 @@
 export default {
     main_panel_title: 'Thunder下载管理器',
     settings_button_title: '设置',
+    about_button_title: '关于',
     clear_button_title: '清除',
     explorer_button_title: '发现',
     clear_all_finished_title: '清除下载完成',
     clear_all_failed_title: '清除下载失败',
     settings_panel_title: '设置',
+    about_panel_title: '关于',
     open_file: '打开文件',
     show_file_mac: '在Finder中显示',
     show_file: '在文件夹中显示',
@@ -24,4 +26,6 @@ export default {
     err_resume: '此文件无法断点续传, 请重新下载!',
     notify_after_finished: '下载完成后通知提醒',
     notify_after_failed: '下载失败后通知提醒',
+    current_version: '当前版本',
+    license: '许可证',
 };

@@ -1,11 +1,15 @@
 {
-    "name": "thunder",
-    "version": "0.1.0",
+    "name": "thunder-download-manager",
+    "version": "0.1.1",
     "license": "MIT",
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build && cp -rf src/crx/* dist/",
         "pack-zip": "rm -f dist.zip && cd dist && zip -r ../dist.zip ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/xiaozhuai/thunder-download-manager"
     },
     "dependencies": {
         "core-js": "^2.6.5",
