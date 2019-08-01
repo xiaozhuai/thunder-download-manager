@@ -13,13 +13,12 @@ main();
 function main() {
     chrome.downloads.setShelfEnabled(false);
     chrome.storage.local.get(['preference', 'history'], result => {
-        // console.log(`loadHistory, ${result.history}`);
+        // console.log(`loadHistory, ${JSON.stringify(result.history, null, 4)}`);
 
         if (result.preference) {
             preference = Object.assign(preference, result.preference);
         }
 
-        let itemList = [];
         if (result.history) {
             itemList = result.history;
         }
@@ -95,6 +94,7 @@ function onItemChanged(delta) {
 
         item.filename = delta.filename.current;
         item.basename = item.filename.substr(item.filename.lastIndexOf('/') + 1);
+        item.timestamp = (new Date().valueOf());
         chrome.downloads.getFileIcon(item.id, url => {
             item.icon = url;
             itemList.unshift(item);
@@ -141,6 +141,10 @@ function onItemChanged(delta) {
 function saveList() {
     // console.log(`saveList, ${JSON.stringify(itemList, null, 4)}`);
     chrome.storage.local.set({history: itemList});
+    chrome.runtime.sendMessage({
+        action: 'setItemList',
+        data: itemList
+    });
 }
 
 function getItemById(id) {
@@ -175,11 +179,11 @@ function startTimerById(id) {
                 clearTimerById(id);
                 return;
             }
-            if (newItem.estimatedEndTime) {
-                newItem.speed = (newItem.totalBytes - newItem.bytesReceived) / (((new Date(newItem.estimatedEndTime)).valueOf() - (new Date()).valueOf()) / 1000);
-            }
 
-            if(newItem.speed < 0) {
+            newItem.timestamp = (new Date().valueOf());
+            newItem.speed = (newItem.bytesReceived - itemList[index].bytesReceived) / ((newItem.timestamp - itemList[index].timestamp) / 1000);
+
+            if (newItem.speed < 0) {
                 delete newItem.speed;
             }
 

@@ -64,7 +64,7 @@
                 <el-button
                         :title="$tr('stop_download')"
                         class="button" type="text" icon="el-icon-close"
-                        v-if="item.state === 'in_progress'"
+                        v-if="item.state === 'in_progress' || item.state === 'interrupted'"
                         @click="cancelDownload"/>
             </div>
             <div class="info">
@@ -128,6 +128,7 @@ export default {
     watch: {
         item: {
             deep: true,
+            handler() {}
         }
     },
     created() {

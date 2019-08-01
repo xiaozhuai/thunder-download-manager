@@ -12,7 +12,8 @@
             </div>
         </div>
         <div class="footer">
-            <el-button :title="$tr('settings_button_title')" circle icon="el-icon-s-tools" @click="preferencePanelVisible = true"/>
+            <el-button :title="$tr('settings_button_title')" circle icon="el-icon-s-tools"
+                       @click="preferencePanelVisible = true"/>
             <el-button :title="$tr('about_button_title')" circle icon="el-icon-info" @click="aboutPanelVisible = true"/>
             <el-popover
                     placement="top"
@@ -24,7 +25,7 @@
                 </div>
                 <el-button :title="$tr('clear_button_title')" circle icon="el-icon-delete-solid" slot="reference"/>
             </el-popover>
-<!--            <el-button :title="$tr('explorer_button_title')" circle icon="el-icon-s-order"/>-->
+            <!--            <el-button :title="$tr('explorer_button_title')" circle icon="el-icon-s-order"/>-->
         </div>
         <el-drawer
                 :title="$tr('settings_panel_title')"
@@ -47,6 +48,7 @@
 import FileItem from "./FileItem";
 import PreferencePanel from "./PreferencePanel";
 import AboutPanel from "./AboutPanel";
+import lodashCloneDeep from 'lodash/cloneDeep';
 
 export default {
     name: "MainPanel",
@@ -77,13 +79,14 @@ export default {
             });
         },
         registerHistoryListener() {
-            chrome.storage.onChanged.addListener(changes => {
-                if (changes.history) {
-                    this.$store.commit('setItemList', changes.history.newValue);
+            chrome.runtime.onMessage.addListener(msg => {
+                if (msg.action === 'setItemList') {
+                    this.$store.commit('setItemList', msg.data);
                 }
             });
         },
         clearAllFinished(removeFile = false) {
+            this.clearPopoverVisible = false;
             this.$store.state.itemList.forEach(item => {
                 if (item.state === 'complete') {
                     let id = item.id;
@@ -105,6 +108,7 @@ export default {
             });
         },
         clearAllFailed() {
+            this.clearPopoverVisible = false;
             this.$store.state.itemList.forEach(item => {
                 if (item.state === 'interrupted') {
                     let id = item.id;
