@@ -10,6 +10,9 @@
             <el-form-item label="github">
                 <a :href="packageInfo.repository.url" target="_blank">xiaozhuai/thunder-download-manager</a>
             </el-form-item>
+            <el-form-item v-if="currentLocale === 'zh-CN'" label="QQ群">
+                <span>773161099</span>
+            </el-form-item>
             <el-form-item label="">
                 <span>Give me a star if you like it!</span>
             </el-form-item>
@@ -25,6 +28,11 @@ export default {
     data() {
         return {
             packageInfo: packageInfo
+        }
+    },
+    computed: {
+        currentLocale() {
+            return window.navigator.languages[0];
         }
     }
 }
