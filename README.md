@@ -9,7 +9,7 @@ A super fast download manager for chrome!!!
 
 ## Localization
 
-See `src/i18n` and `src/crx/_locales`
+See `src/crx/_locales`
 
 ## Support
 

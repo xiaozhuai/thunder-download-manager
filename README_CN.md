@@ -9,7 +9,7 @@
 
 ## 国际化
 
-见 `src/i18n` 和 `src/crx/_locales`
+见 `src/crx/_locales`
 
 ## 支持
 
