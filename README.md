@@ -20,5 +20,9 @@ pr and issue are welcome!
 - [ ] Multi-thread download
 - [ ] Notification sound
 - [ ] New task created animation 
-- [x] `background.js` localization
+- [x] Custom create new task
+- [x] Drag downloaded file
+- [x] Show `accept danger` dialog
+- [x] Use `chrome.i18n`
+- [ ] Grab media files in current tab
 - [ ] more...
