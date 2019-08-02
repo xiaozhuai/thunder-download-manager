@@ -12,9 +12,11 @@
             </div>
         </div>
         <div class="footer">
-            <el-button :title="$tr('settingsButtonTitle')" circle icon="el-icon-s-tools"
+            <el-button :title="$tr('newTaskButtonTitle')" circle icon="el-icon-plus"
+                       @click="showNewTaskDialog"/>
+            <el-button :title="$tr('settingsButtonTitle')" circle icon="el-icon-setting"
                        @click="preferencePanelVisible = true"/>
-            <el-button :title="$tr('aboutButtonTitle')" circle icon="el-icon-info" @click="aboutPanelVisible = true"/>
+            <el-button :title="$tr('aboutButtonTitle')" circle icon="el-icon-coordinate" @click="aboutPanelVisible = true"/>
             <el-popover
                     placement="top"
                     width="160"
@@ -23,9 +25,9 @@
                     <div class="clear-option" @click="clearAllFinished(false)">{{$tr('clearAllFinishedTitle')}}</div>
                     <div class="clear-option" @click="clearAllFailed()">{{$tr('clearAllFailedTitle')}}</div>
                 </div>
-                <el-button :title="$tr('clearButtonTitle')" circle icon="el-icon-delete-solid" slot="reference"/>
+                <el-button :title="$tr('clearButtonTitle')" circle icon="el-icon-delete" slot="reference"/>
             </el-popover>
-            <!--            <el-button :title="$tr('explorerButtonTitle')" circle icon="el-icon-s-order"/>-->
+            <!--            <el-button :title="$tr('explorerButtonTitle')" circle icon="el-icon-magic-stick"/>-->
         </div>
         <el-drawer
                 :title="$tr('settingsPanelTitle')"
@@ -55,7 +57,7 @@ export default {
     components: {AboutPanel, PreferencePanel, FileItem},
     created() {
         this.loadHistory();
-        this.registerHistoryListener();
+        this.registerMessageListener();
     },
     data() {
         return {
@@ -78,11 +80,28 @@ export default {
                 }
             });
         },
-        registerHistoryListener() {
+        registerMessageListener() {
             chrome.runtime.onMessage.addListener(msg => {
                 if (msg.action === 'setItemList') {
                     this.$store.commit('setItemList', msg.data);
                 }
+            });
+        },
+        showNewTaskDialog() {
+            this.$prompt(this.$tr('pleaseInputUrl'), this.$tr('newTaskDialogTitle'), {
+                confirmButtonText: this.$tr('confirm'),
+                cancelButtonText: this.$tr('cancel'),
+            }).then(({value}) => {
+                chrome.downloads.download({
+                    url: value,
+                }, id => {
+                    if(chrome.extension.lastError && chrome.extension.lastError.message === 'Invalid URL') {
+                        this.$message.error(this.$tr('invalidUrl'));
+                        return;
+                    }
+                    console.log(`new task created, id: ${id}`);
+                });
+            }).catch(() => {
             });
         },
         clearAllFinished(removeFile = false) {
@@ -203,5 +222,11 @@ export default {
 <style>
 .el-dialog__wrapper {
     overflow: hidden !important;
+}
+</style>
+
+<style>
+.el-message-box {
+    width: 80%;
 }
 </style>

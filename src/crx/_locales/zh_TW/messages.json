@@ -66,6 +66,12 @@
     "no": {
         "message": "否"
     },
+    "confirm": {
+        "message": "確認"
+    },
+    "cancel": {
+        "message": "取消"
+    },
     "failedDownload": {
         "message": "下載失敗"
     },
@@ -95,5 +101,17 @@
     },
     "downloadErrMsg": {
         "message": "下載 {{basename}} 失敗"
+    },
+    "newTaskButtonTitle": {
+        "message": "新任務"
+    },
+    "pleaseInputUrl": {
+        "message": "請輸入鏈接"
+    },
+    "newTaskDialogTitle": {
+        "message": "新建下載任務"
+    },
+    "invalidUrl": {
+        "message": "鏈接非法"
     }
 }

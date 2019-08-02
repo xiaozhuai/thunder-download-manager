@@ -65,6 +65,12 @@
     "no": {
         "message": "No"
     },
+    "confirm": {
+        "message": "Confirm"
+    },
+    "cancel": {
+        "message": "Cancel"
+    },
     "failedDownload": {
         "message": "Failed"
     },
@@ -94,5 +100,17 @@
     },
     "downloadErrMsg": {
         "message": "Download {{basename}} Failed"
+    },
+    "newTaskButtonTitle": {
+        "message": "New"
+    },
+    "pleaseInputUrl": {
+        "message": "Please input url"
+    },
+    "newTaskDialogTitle": {
+        "message": "New Task"
+    },
+    "invalidUrl": {
+        "message": "Invalid URL"
     }
 }
