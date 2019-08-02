@@ -16,7 +16,8 @@
                        @click="showNewTaskDialog"/>
             <el-button :title="$tr('settingsButtonTitle')" circle icon="el-icon-setting"
                        @click="preferencePanelVisible = true"/>
-            <el-button :title="$tr('aboutButtonTitle')" circle icon="el-icon-coordinate" @click="aboutPanelVisible = true"/>
+            <el-button :title="$tr('aboutButtonTitle')" circle icon="el-icon-coordinate"
+                       @click="aboutPanelVisible = true"/>
             <el-popover
                     placement="top"
                     width="160"
@@ -64,6 +65,7 @@ export default {
             clearPopoverVisible: false,
             preferencePanelVisible: false,
             aboutPanelVisible: false,
+            hasShowAcceptDanger: {}
         }
     },
     methods: {
@@ -73,17 +75,26 @@ export default {
                 if (result.history) {
                     itemList = result.history;
                 }
-                try {
-                    this.$store.commit('setItemList', itemList);
-                } catch (e) {
-
-                }
+                this.$store.commit('setItemList', itemList);
+                this.autoShowAcceptDanger();
             });
         },
         registerMessageListener() {
             chrome.runtime.onMessage.addListener(msg => {
                 if (msg.action === 'setItemList') {
                     this.$store.commit('setItemList', msg.data);
+                    this.autoShowAcceptDanger();
+                }
+            });
+        },
+        autoShowAcceptDanger() {
+            this.$store.state.itemList.forEach(item => {
+                if (item.danger !== 'safe' && item.danger !== 'accepted' && !this.hasShowAcceptDanger.hasOwnProperty(item.id)) {
+                    console.log(`acceptDanger, id: ${item.id}`);
+                    this.hasShowAcceptDanger[item.id] = true;
+                    chrome.downloads.acceptDanger(item.id, () => {
+                        delete this.hasShowAcceptDanger[item.id];
+                    });
                 }
             });
         },
@@ -95,7 +106,7 @@ export default {
                 chrome.downloads.download({
                     url: value,
                 }, id => {
-                    if(chrome.extension.lastError && chrome.extension.lastError.message === 'Invalid URL') {
+                    if (chrome.extension.lastError && chrome.extension.lastError.message === 'Invalid URL') {
                         this.$message.error(this.$tr('invalidUrl'));
                         return;
                     }

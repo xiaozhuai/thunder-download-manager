@@ -99,6 +99,10 @@ function onItemChanged(delta) {
         }
         if (item == null) return;
 
+        if(delta.danger) {
+            item.danger = delta.danger.current;
+        }
+
         item.filename = delta.filename.current;
         item.basename = item.filename.substr(item.filename.lastIndexOf('/') + 1);
         item.timestamp = (new Date().valueOf());
@@ -124,6 +128,9 @@ function onItemChanged(delta) {
 
     if (delta.state) {
         item.state = delta.state.current;
+        if (item.state === 'complete') {
+            item.bytesReceived = item.fileSize
+        }
         updateBadge();
     }
 
@@ -140,6 +147,14 @@ function onItemChanged(delta) {
 
     if (delta.canResume) {
         item.canResume = delta.canResume.current;
+    }
+
+    if (delta.exists) {
+        item.exists = delta.exists.current;
+    }
+
+    if(delta.danger) {
+        item.danger = delta.danger.current;
     }
 
     saveList();
@@ -218,6 +233,8 @@ function startTimerById(id) {
             if (newItem.state !== 'in_progress' || newItem.paused) {
                 clearTimerById(id);
             }
+
+            updateBadge();
         });
     }, QUERY_STATE_INTERVAL);
 }
