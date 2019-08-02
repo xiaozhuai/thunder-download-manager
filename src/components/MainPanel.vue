@@ -51,7 +51,6 @@
 import FileItem from "./FileItem";
 import PreferencePanel from "./PreferencePanel";
 import AboutPanel from "./AboutPanel";
-import lodashCloneDeep from 'lodash/cloneDeep';
 
 export default {
     name: "MainPanel",
