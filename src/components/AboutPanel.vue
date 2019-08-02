@@ -1,7 +1,7 @@
 <template>
     <div class="about-panel">
         <el-form ref="form" :model="preference" label-width="100px">
-            <el-form-item :label="$tr('current_version')">
+            <el-form-item :label="$tr('currentVersion')">
                 <span>{{packageInfo.version}}</span>
             </el-form-item>
             <el-form-item :label="$tr('license')">

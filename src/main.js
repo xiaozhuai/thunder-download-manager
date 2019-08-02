@@ -3,15 +3,13 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue';
 import store from './store';
-import i18n from './i18n';
 import moment from 'moment';
 
 Vue.config.productionTip = false;
 const locale = window.navigator.languages[0];
-i18n.setLocale(locale);
 moment.locale(locale);
 
-Vue.prototype.$tr = (name) => i18n.tr(name);
+Vue.prototype.$tr = (name) => chrome.i18n.getMessage(name);
 Vue.prototype.$moment = moment;
 
 Vue.use(ElementUI, {

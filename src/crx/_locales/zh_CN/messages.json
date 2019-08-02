@@ -4,5 +4,95 @@
     },
     "extDesc": {
         "message": "一个极速的下载管理器"
+    },
+    "settingsButtonTitle": {
+        "message": "设置"
+    },
+    "aboutButtonTitle": {
+        "message": "关于"
+    },
+    "clearButtonTitle": {
+        "message": "清除"
+    },
+    "explorerButtonTitle": {
+        "message": "发现"
+    },
+    "clearAllFinishedTitle": {
+        "message": "清除下载完成"
+    },
+    "clearAllFailedTitle": {
+        "message": "清除下载失败"
+    },
+    "settingsPanelTitle": {
+        "message": "设置"
+    },
+    "aboutPanelTitle": {
+        "message": "关于"
+    },
+    "openFile": {
+        "message": "打开文件"
+    },
+    "showFileMac": {
+        "message": "在Finder中显示"
+    },
+    "showFile": {
+        "message": "在文件夹中显示"
+    },
+    "copyLink": {
+        "message": "拷贝链接"
+    },
+    "pauseDownload": {
+        "message": "暂停"
+    },
+    "resumeDownload": {
+        "message": "继续"
+    },
+    "reDownload": {
+        "message": "重新下载"
+    },
+    "removeDownload": {
+        "message": "删除"
+    },
+    "stopDownload": {
+        "message": "停止"
+    },
+    "alsoRemoveFile": {
+        "message": "同时删除文件?"
+    },
+    "yes": {
+        "message": "是"
+    },
+    "no": {
+        "message": "否"
+    },
+    "failedDownload": {
+        "message": "下载失败"
+    },
+    "sucCopyLink": {
+        "message": "链接已拷贝至剪切板"
+    },
+    "errCopyLink": {
+        "message": "拷贝链接失败"
+    },
+    "errResume": {
+        "message": "此文件无法断点续传, 请重新下载!"
+    },
+    "notifyAfterFinished": {
+        "message": "下载完成后通知提醒"
+    },
+    "notifyAfterFailed": {
+        "message": "下载失败后通知提醒"
+    },
+    "currentVersion": {
+        "message": "当前版本"
+    },
+    "license": {
+        "message": "许可证"
+    },
+    "downloadSucMsg": {
+        "message": "下载 {{basename}} 完成"
+    },
+    "downloadErrMsg": {
+        "message": "下载 {{basename}} 失败"
     }
 }

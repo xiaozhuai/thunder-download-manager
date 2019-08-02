@@ -4,5 +4,95 @@
     },
     "extDesc": {
         "message": "A super fast download manager"
+    },
+    "settingsButtonTitle": {
+        "message": "Settings"
+    },
+    "aboutButtonTitle": {
+        "message": "About"
+    },
+    "clearButtonTitle": {
+        "message": "Clear"
+    },
+    "explorerButtonTitle": {
+        "message": "Explorer"
+    },
+    "clearAllFinishedTitle": {
+        "message": "Clear All Finished"
+    },
+    "clearAllFailedTitle": {
+        "message": "Clear All Failed"
+    },
+    "settingsPanelTitle": {
+        "message": "Settings"
+    },
+    "aboutPanelTitle": {
+        "message": "About"
+    },
+    "openFile": {
+        "message": "Open file"
+    },
+    "showFileMac": {
+        "message": "Show in Finder"
+    },
+    "showFile": {
+        "message": "Show in file manager"
+    },
+    "copyLink": {
+        "message": "Copy link"
+    },
+    "pauseDownload": {
+        "message": "Pause"
+    },
+    "resumeDownload": {
+        "message": "Resume"
+    },
+    "reDownload": {
+        "message": "Re-download"
+    },
+    "removeDownload": {
+        "message": "Remove"
+    },
+    "stopDownload": {
+        "message": "Stop"
+    },
+    "alsoRemoveFile": {
+        "message": "Also remove file?"
+    },
+    "yes": {
+        "message": "Yes"
+    },
+    "no": {
+        "message": "No"
+    },
+    "failedDownload": {
+        "message": "Failed"
+    },
+    "sucCopyLink": {
+        "message": "Link copied!"
+    },
+    "errCopyLink": {
+        "message": "Copy link failed!"
+    },
+    "errResume": {
+        "message": "Cannot resume download, please re-download it!"
+    },
+    "notifyAfterFinished": {
+        "message": "Notification after finished"
+    },
+    "notifyAfterFailed": {
+        "message": "Notification after failed"
+    },
+    "currentVersion": {
+        "message": "Current Version"
+    },
+    "license": {
+        "message": "License"
+    },
+    "downloadSucMsg": {
+        "message": "Download {{basename}} Finished"
+    },
+    "downloadErrMsg": {
+        "message": "Download {{basename}} Failed"
     }
 }

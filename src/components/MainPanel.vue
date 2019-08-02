@@ -2,7 +2,7 @@
     <div class="main-panel">
         <div class="header">
             <img class="logo" src="../assets/logo.png" alt="logo"/>
-            <div class="title">{{$tr('main_panel_title')}}</div>
+            <div class="title">{{$tr('extName')}}</div>
         </div>
         <div class="body">
             <div class="file-list">
@@ -12,30 +12,30 @@
             </div>
         </div>
         <div class="footer">
-            <el-button :title="$tr('settings_button_title')" circle icon="el-icon-s-tools"
+            <el-button :title="$tr('settingsButtonTitle')" circle icon="el-icon-s-tools"
                        @click="preferencePanelVisible = true"/>
-            <el-button :title="$tr('about_button_title')" circle icon="el-icon-info" @click="aboutPanelVisible = true"/>
+            <el-button :title="$tr('aboutButtonTitle')" circle icon="el-icon-info" @click="aboutPanelVisible = true"/>
             <el-popover
                     placement="top"
                     width="160"
                     v-model="clearPopoverVisible">
                 <div class="clear-options">
-                    <div class="clear-option" @click="clearAllFinished(false)">{{$tr('clear_all_finished_title')}}</div>
-                    <div class="clear-option" @click="clearAllFailed()">{{$tr('clear_all_failed_title')}}</div>
+                    <div class="clear-option" @click="clearAllFinished(false)">{{$tr('clearAllFinishedTitle')}}</div>
+                    <div class="clear-option" @click="clearAllFailed()">{{$tr('clearAllFailedTitle')}}</div>
                 </div>
-                <el-button :title="$tr('clear_button_title')" circle icon="el-icon-delete-solid" slot="reference"/>
+                <el-button :title="$tr('clearButtonTitle')" circle icon="el-icon-delete-solid" slot="reference"/>
             </el-popover>
-            <!--            <el-button :title="$tr('explorer_button_title')" circle icon="el-icon-s-order"/>-->
+            <!--            <el-button :title="$tr('explorerButtonTitle')" circle icon="el-icon-s-order"/>-->
         </div>
         <el-drawer
-                :title="$tr('settings_panel_title')"
+                :title="$tr('settingsPanelTitle')"
                 :visible.sync="preferencePanelVisible"
                 direction="btt"
                 size="100%">
             <preference-panel/>
         </el-drawer>
         <el-drawer
-                :title="$tr('about_panel_title')"
+                :title="$tr('aboutPanelTitle')"
                 :visible.sync="aboutPanelVisible"
                 direction="btt"
                 size="100%">

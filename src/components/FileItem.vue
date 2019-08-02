@@ -10,36 +10,36 @@
             <div class="url">{{fileUrl || '&nbsp;'}}</div>
             <div class="buttons">
                 <el-button
-                        :title="$tr('open_file')"
+                        :title="$tr('openFile')"
                         class="button" type="text" icon="el-icon-document"
                         v-if="item.state === 'complete'"
                         @click="openFile"/>
 
                 <el-button
-                        :title="isMac ? $tr('show_file_mac') : $tr('show_file')"
+                        :title="isMac ? $tr('showFileMac') : $tr('showFile')"
                         class="button" type="text" icon="el-icon-folder"
                         v-if="item.state === 'complete'"
                         @click="showFileInDir"/>
 
                 <el-button
-                        :title="$tr('copy_link')"
+                        :title="$tr('copyLink')"
                         class="button" type="text" icon="el-icon-link"
                         @click="copyLink"/>
 
                 <el-button
-                        :title="$tr('pause_download')"
+                        :title="$tr('pauseDownload')"
                         class="button" type="text" icon="el-icon-video-pause"
                         v-if="item.state === 'in_progress' && !item.paused"
                         @click="pauseDownload"/>
 
                 <el-button
-                        :title="$tr('resume_download')"
+                        :title="$tr('resumeDownload')"
                         class="button" type="text" icon="el-icon-refresh-right"
                         v-if="item.state === 'in_progress' && item.paused"
                         @click="resumeDownload"/>
 
                 <!--                <el-button-->
-                <!--                        :title="$tr('re_download')"-->
+                <!--                        :title="$tr('reDownload')"-->
                 <!--                        class="button" type="text" icon="el-icon-refresh-left"-->
                 <!--                        v-if="item.state !== 'in_progress'"-->
                 <!--                        @click="reDownload"/>-->
@@ -50,19 +50,19 @@
                         placement="right"
                         width="160"
                         style="margin-left: 8px;">
-                    <p>{{$tr('also_remove_file')}}</p>
+                    <p>{{$tr('alsoRemoveFile')}}</p>
                     <div style="text-align: right; margin: 0">
                         <el-button size="mini" type="text" @click="deleteItem(true)">{{$tr('yes')}}</el-button>
                         <el-button type="primary" size="mini" @click="deleteItem(false)">{{$tr('no')}}</el-button>
                     </div>
                     <el-button
-                            :title="$tr('remove_download')"
+                            :title="$tr('removeDownload')"
                             slot="reference"
                             class="button" type="text" icon="el-icon-close"/>
                 </el-popover>
 
                 <el-button
-                        :title="$tr('stop_download')"
+                        :title="$tr('stopDownload')"
                         class="button" type="text" icon="el-icon-close"
                         v-if="item.state === 'in_progress' || item.state === 'interrupted'"
                         @click="cancelDownload"/>
@@ -105,7 +105,7 @@ export default {
                 case 'complete':
                     return this.$moment(this.item.endTime).fromNow();
                 case 'interrupted':
-                    return this.$tr('failed_download');
+                    return this.$tr('failedDownload');
             }
         },
         fileUrl() {
@@ -178,9 +178,9 @@ export default {
         },
         copyLink() {
             window.navigator.clipboard.writeText(this.item.url).then(() => {
-                this.$message.success(this.$tr('suc_copy_link'));
+                this.$message.success(this.$tr('sucCopyLink'));
             }).catch(() => {
-                this.$message.error(this.$tr('err_copy_link'));
+                this.$message.error(this.$tr('errCopyLink'));
             });
         },
         openFile() {
@@ -196,7 +196,7 @@ export default {
         },
         resumeDownload() {
             if (!this.item.canResume) {
-                this.$message.error(this.$tr('err_resume'));
+                this.$message.error(this.$tr('errResume'));
                 return;
             }
             chrome.downloads.resume(this.item.id, () => {

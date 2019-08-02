@@ -1,10 +1,10 @@
 <template>
     <div class="preference-panel">
         <el-form ref="form" :model="preference" label-width="180px">
-            <el-form-item :label="$tr('notify_after_finished')">
+            <el-form-item :label="$tr('notifyAfterFinished')">
                 <el-switch v-model="preference.showNotificationAfterSuccess"></el-switch>
             </el-form-item>
-            <el-form-item :label="$tr('notify_after_failed')">
+            <el-form-item :label="$tr('notifyAfterFailed')">
                 <el-switch v-model="preference.showNotificationAfterFailed"></el-switch>
             </el-form-item>
         </el-form>

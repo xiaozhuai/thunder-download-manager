@@ -9,6 +9,13 @@ const QUERY_STATE_INTERVAL = 500;
 
 main();
 
+let tr = (name) => chrome.i18n.getMessage(name);
+
+String.prototype.format = function (kwargs) {
+    return this.replace(/\{\{\s*(\w+)\s*\}\}/g, function (k, v) {
+        return kwargs[v]
+    });
+};
 
 function main() {
     chrome.downloads.setShelfEnabled(false);
@@ -194,8 +201,8 @@ function startTimerById(id) {
                 chrome.notifications.create(`state_of_${newItem.id}`, {
                     type: 'basic',
                     iconUrl: itemList[index].icon,
-                    title: "Thunder Download Manager", // TODO 多语言
-                    message: `Download ${newItem.filename} Finished` // TODO 多语言
+                    title: tr('extName'),
+                    message: tr('downloadSucMsg').format(itemList[index])
                 });
             }
 
@@ -203,8 +210,8 @@ function startTimerById(id) {
                 chrome.notifications.create(`state_of_${newItem.id}`, {
                     type: 'basic',
                     iconUrl: itemList[index].icon,
-                    title: "Thunder Download Manager", // TODO 多语言
-                    message: `Download ${newItem.filename} Failed` // TODO 多语言
+                    title: tr('extName'),
+                    message: tr('downloadErrMsg').format(itemList[index])
                 });
             }
 

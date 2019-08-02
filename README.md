@@ -20,5 +20,5 @@ pr and issue are welcome!
 - [ ] Multi-thread download
 - [ ] Notification sound
 - [ ] New task created animation 
-- [ ] `background.js` localization
+- [x] `background.js` localization
 - [ ] more...
