@@ -1,10 +1,10 @@
 <template>
     <div class="file-item">
-        <el-image class="icon" :src="item.icon">
-            <div slot="error" class="image-slot">
-                <i class="el-icon-picture-outline" style="font-size: 32px;"></i>
-            </div>
-        </el-image>
+        <div :title="item.state === 'complete' ? $tr('pressToDrag') : ''"
+             :style="{cursor: item.state === 'complete' ? 'grab' : 'auto'}"
+             draggable="true" ref="draggableNode" style="display: inline-block;">
+            <img class="icon" :src="item.icon" draggable="false" alt="icon"/>
+        </div>
         <div class="right-container">
             <div class="filename">{{item.basename || '&nbsp;'}}</div>
             <div class="url">{{fileUrl || '&nbsp;'}}</div>
@@ -103,7 +103,11 @@ export default {
         infoText() {
             switch (this.item.state) {
                 case 'complete':
-                    return this.$moment(this.item.endTime).fromNow();
+                    if (this.item.exists) {
+                        return this.$moment(this.item.endTime).fromNow();
+                    } else {
+                        return this.$tr('fileRemoved');
+                    }
                 case 'interrupted':
                     return this.$tr('failedDownload');
             }
@@ -128,10 +132,30 @@ export default {
     watch: {
         item: {
             deep: true,
-            handler() {}
+            handler() {
+            }
         }
     },
-    created() {
+    mounted() {
+        // em......
+        chrome.downloads.search({id: this.item.id}, () => {
+        });
+
+        this.$refs.draggableNode.ondragstart = () => {
+            chrome.downloads.search({id: this.item.id}, items => {
+                if (items.length === 0) return;
+                let item = items[0];
+                if (item.state === 'complete') {
+                    if (item.exists) {
+                        console.log(`on drag file start, id: ${this.item.id}`);
+                        chrome.downloads.drag(this.item.id);
+                    } else {
+                        this.$message.warning(this.$tr('fileNotExists'));
+                    }
+                }
+            });
+            return false;
+        };
     },
     methods: {
         bytesHumanReadable(size) {
@@ -184,10 +208,26 @@ export default {
             });
         },
         openFile() {
-            chrome.downloads.open(this.item.id);
+            chrome.downloads.search({id: this.item.id}, items => {
+                if (items.length === 0) return;
+                let item = items[0];
+                if (item.exists) {
+                    chrome.downloads.open(this.item.id);
+                } else {
+                    this.$message.warning(this.$tr('fileNotExists'));
+                }
+            });
         },
         showFileInDir() {
-            chrome.downloads.show(this.item.id);
+            chrome.downloads.search({id: this.item.id}, items => {
+                if (items.length === 0) return;
+                let item = items[0];
+                if (item.exists) {
+                    chrome.downloads.show(this.item.id);
+                } else {
+                    this.$message.warning(this.$tr('fileNotExists'));
+                }
+            });
         },
         pauseDownload() {
             chrome.downloads.pause(this.item.id, () => {

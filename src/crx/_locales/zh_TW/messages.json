@@ -113,5 +113,14 @@
     },
     "invalidUrl": {
         "message": "鏈接非法"
+    },
+    "fileNotExists": {
+        "message": "文件不存在"
+    },
+    "pressToDrag": {
+        "message": "按住以拖拽文件"
+    },
+    "fileRemoved": {
+        "message": "已刪除"
     }
 }

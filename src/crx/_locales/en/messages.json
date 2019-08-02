@@ -112,5 +112,14 @@
     },
     "invalidUrl": {
         "message": "Invalid URL"
+    },
+    "fileNotExists": {
+        "message": "File not exists"
+    },
+    "pressToDrag": {
+        "message": "Press to drag file"
+    },
+    "fileRemoved": {
+        "message": "Removed"
     }
 }
