@@ -104,7 +104,7 @@ function onItemChanged(delta) {
         }
 
         item.filename = delta.filename.current;
-        item.basename = item.filename.substr(item.filename.lastIndexOf('/') + 1);
+        item.basename = item.filename.split(/[\\/]/).pop();
         item.timestamp = (new Date().valueOf());
         chrome.downloads.getFileIcon(item.id, url => {
             item.icon = url;
