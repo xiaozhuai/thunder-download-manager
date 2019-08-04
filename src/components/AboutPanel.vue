@@ -32,7 +32,7 @@ export default {
     },
     computed: {
         currentLocale() {
-            return window.navigator.languages[0];
+            return chrome.i18n.getUILanguage();
         }
     }
 }

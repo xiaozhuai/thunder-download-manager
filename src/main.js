@@ -6,8 +6,7 @@ import store from './store';
 import moment from 'moment';
 
 Vue.config.productionTip = false;
-const locale = window.navigator.languages[0];
-moment.locale(locale);
+moment.locale(chrome.i18n.getUILanguage());
 
 Vue.prototype.$tr = (name) => chrome.i18n.getMessage(name);
 Vue.prototype.$moment = moment;
