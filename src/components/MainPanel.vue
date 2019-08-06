@@ -233,9 +233,6 @@ export default {
 .el-dialog__wrapper {
     overflow: hidden !important;
 }
-</style>
-
-<style>
 .el-message-box {
     width: 80%;
 }
