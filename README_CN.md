@@ -2,7 +2,7 @@
 
 一个极速的Chrome下载管理器!!!
 
-![preview.png](preview.png)
+![preview.jpg](preview.jpg)
 
 ## Chrome 商店
 [https://chrome.google.com/webstore/detail/thunder-download-manager/nllgadppmkoamdlocamdnmimkehhojai](https://chrome.google.com/webstore/detail/thunder-download-manager/nllgadppmkoamdlocamdnmimkehhojai)
