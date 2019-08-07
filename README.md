@@ -2,7 +2,7 @@
 
 A super fast download manager for chrome!!!
 
-![preview.png](preview.png)
+![preview.jpg](preview.jpg)
 
 ## Chrome Store
 [https://chrome.google.com/webstore/detail/thunder-download-manager/nllgadppmkoamdlocamdnmimkehhojai](https://chrome.google.com/webstore/detail/thunder-download-manager/nllgadppmkoamdlocamdnmimkehhojai)
