@@ -45,7 +45,7 @@
                 <!--                        @click="reDownload"/>-->
 
                 <el-popover
-                        v-if="item.state === 'complete'"
+                        v-if="item.state === 'complete' && item.exists"
                         v-model="removeFilePopoverVisible"
                         placement="right"
                         width="160"
@@ -60,6 +60,12 @@
                             slot="reference"
                             class="button" type="text" icon="el-icon-close"/>
                 </el-popover>
+
+                <el-button
+                        :title="$tr('removeDownload')"
+                        class="button" type="text" icon="el-icon-close"
+                        v-if="item.state === 'complete' && !item.exists"
+                        @click="deleteItem(false)"/>
 
                 <el-button
                         :title="$tr('stopDownload')"
