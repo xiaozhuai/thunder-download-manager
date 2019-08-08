@@ -122,7 +122,7 @@ export default {
             return this.bytesHumanReadable(this.item.fileSize);
         },
         humanReadablePercentAndSpeed() {
-            if (this.percentage === 100 || this.item.paused || this.item.state !== 'in_progress' || !this.item.speed) {
+            if (this.percentage === 100 || this.item.paused || this.item.state !== 'in_progress' || !this.item.hasOwnProperty('speed')) {
                 return `${this.percentage}%`;
             } else {
                 return `${this.percentage}%  ${this.bytesHumanReadable(this.item.speed)}/s`
@@ -159,9 +159,10 @@ export default {
     },
     methods: {
         bytesHumanReadable(size) {
+            if(size === 0) {
+                return '0 B';
+            }
             let unit = 'B';
-
-            if (!size) return '';
 
             if (size > 1024) {
                 unit = 'KB';
@@ -376,14 +377,13 @@ export default {
 .progress {
     display: inline-block;
     margin-left: 12px;
-    width: 160px;
+    width: 138px;
     vertical-align: top;
     margin-top: 6px;
 }
 
 .progressText {
-    /*float: right;*/
-    position: absolute;
+    float: right;
     right: 12px;
     line-height: 18px;
     display: inline-block;

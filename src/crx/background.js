@@ -205,10 +205,6 @@ function startTimerById(id) {
             newItem.timestamp = (new Date().valueOf());
             newItem.speed = (newItem.bytesReceived - itemList[index].bytesReceived) / ((newItem.timestamp - itemList[index].timestamp) / 1000);
 
-            if (newItem.speed < 0) {
-                delete newItem.speed;
-            }
-
             itemList[index] = Object.assign(itemList[index], newItem);
             saveList();
 
