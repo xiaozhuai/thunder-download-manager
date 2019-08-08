@@ -159,9 +159,6 @@ export default {
     },
     methods: {
         bytesHumanReadable(size) {
-            if(size === 0) {
-                return '0 B';
-            }
             let unit = 'B';
 
             if (size > 1024) {
