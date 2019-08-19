@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build && cp -rf src/crx/* dist/",
+        "build": "vue-cli-service build",
         "pack-zip": "rm -f dist.zip && cd dist && zip -r ../dist.zip ."
     },
     "repository": {

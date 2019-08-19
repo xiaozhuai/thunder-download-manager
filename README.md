@@ -9,7 +9,7 @@ A super fast download manager for chrome!!!
 
 ## Localization
 
-See `src/crx/_locales`
+See `public/_locales`
 
 ## Support
 

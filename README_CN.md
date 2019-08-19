@@ -9,7 +9,7 @@
 
 ## 国际化
 
-见 `src/crx/_locales`
+见 `public/_locales`
 
 ## 支持
 
