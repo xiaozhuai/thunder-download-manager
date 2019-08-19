@@ -7,6 +7,12 @@
             <el-form-item :label="$tr('notifyAfterFailed')">
                 <el-switch v-model="preference.showNotificationAfterFailed"></el-switch>
             </el-form-item>
+            <el-form-item :label="$tr('playSoundAfterFinished')">
+                <el-switch v-model="preference.playSoundAfterSuccess"></el-switch>
+            </el-form-item>
+            <el-form-item :label="$tr('playSoundAfterFailed')">
+                <el-switch v-model="preference.playSoundAfterFailed"></el-switch>
+            </el-form-item>
         </el-form>
     </div>
 </template>
@@ -18,7 +24,9 @@ export default {
         return {
             preference: {
                 showNotificationAfterSuccess: true,
-                showNotificationAfterFailed: true
+                showNotificationAfterFailed: true,
+                playSoundAfterSuccess: true,
+                playSoundAfterFailed: true,
             }
         };
     },

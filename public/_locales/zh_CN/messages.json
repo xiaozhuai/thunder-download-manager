@@ -89,6 +89,12 @@
     "notifyAfterFailed": {
         "message": "下载失败后通知提醒"
     },
+    "playSoundAfterFinished": {
+        "message": "下载完成提示音"
+    },
+    "playSoundAfterFailed": {
+        "message": "下载失败提示音"
+    },
     "currentVersion": {
         "message": "当前版本"
     },

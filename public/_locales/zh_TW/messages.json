@@ -90,6 +90,12 @@
     "notifyAfterFailed": {
         "message": "下載失敗后通知提醒"
     },
+    "playSoundAfterFinished": {
+        "message": "下載完成提示音"
+    },
+    "playSoundAfterFailed": {
+        "message": "下載失敗提示音"
+    },
     "currentVersion": {
         "message": "當前版本"
     },

@@ -3,7 +3,9 @@ let itemList = [];
 let timerMap = {};
 let preference = {
     showNotificationAfterSuccess: true,
-    showNotificationAfterFailed: true
+    showNotificationAfterFailed: true,
+    playSoundAfterSuccess: true,
+    playSoundAfterFailed: true,
 };
 const QUERY_STATE_INTERVAL = 500;
 
@@ -16,6 +18,10 @@ String.prototype.format = function (kwargs) {
         return kwargs[v]
     });
 };
+
+function isMac() {
+    return /macintosh|mac os x/i.test(navigator.userAgent);
+}
 
 function main() {
     chrome.downloads.setShelfEnabled(false);
@@ -45,6 +51,25 @@ function main() {
                 preference = Object.assign(preference, changes.preference.newValue);
             }
         });
+    });
+    chrome.notifications.onClicked.addListener(notificationId => {
+        if (/^notify_success_/i.test(notificationId)) {
+            let itemId = parseInt(notificationId.substr('notify_success_'.length));
+            chrome.downloads.open(itemId);
+        }
+    });
+    chrome.notifications.onButtonClicked.addListener((notificationId, buttonIndex) => {
+        if (/^notify_success_/i.test(notificationId)) {
+            let itemId = parseInt(notificationId.substr('notify_success_'.length));
+            switch (buttonIndex) {
+                case 0:
+                    chrome.downloads.open(itemId);
+                    break;
+                case 1:
+                    chrome.downloads.show(itemId);
+                    break;
+            }
+        }
     });
 }
 
@@ -99,7 +124,7 @@ function onItemChanged(delta) {
         }
         if (item == null) return;
 
-        if(delta.danger) {
+        if (delta.danger) {
             item.danger = delta.danger.current;
         }
 
@@ -153,7 +178,7 @@ function onItemChanged(delta) {
         item.exists = delta.exists.current;
     }
 
-    if(delta.danger) {
+    if (delta.danger) {
         item.danger = delta.danger.current;
     }
 
@@ -208,22 +233,40 @@ function startTimerById(id) {
             itemList[index] = Object.assign(itemList[index], newItem);
             saveList();
 
-            if (newItem.state === 'complete' && preference.showNotificationAfterSuccess) {
-                chrome.notifications.create(`state_of_${newItem.id}`, {
-                    type: 'basic',
-                    iconUrl: itemList[index].icon,
-                    title: tr('extName'),
-                    message: tr('downloadSucMsg').format(itemList[index])
-                });
+            if (newItem.state === 'complete') {
+                if (preference.showNotificationAfterSuccess) {
+                    chrome.notifications.create(`notify_success_${newItem.id}`, {
+                        type: 'basic',
+                        iconUrl: itemList[index].icon,
+                        title: tr('extName'),
+                        message: tr('downloadSucMsg').format(itemList[index]),
+                        buttons: [
+                            {title: tr('openFile')},
+                            {title: isMac() ? tr('showFileMac') : tr('showFile')}
+                        ]
+                    });
+                }
+
+                if (preference.playSoundAfterSuccess) {
+                    let audio = new Audio(chrome.runtime.getURL('sounds/finish.ogg'));
+                    audio.play().then();
+                }
             }
 
-            if (newItem.state === 'interrupted' && preference.showNotificationAfterFailed) {
-                chrome.notifications.create(`state_of_${newItem.id}`, {
-                    type: 'basic',
-                    iconUrl: itemList[index].icon,
-                    title: tr('extName'),
-                    message: tr('downloadErrMsg').format(itemList[index])
-                });
+            if (newItem.state === 'interrupted') {
+                if (preference.showNotificationAfterFailed) {
+                    chrome.notifications.create(`notify_failed_${newItem.id}`, {
+                        type: 'basic',
+                        iconUrl: itemList[index].icon,
+                        title: tr('extName'),
+                        message: tr('downloadErrMsg').format(itemList[index])
+                    });
+                }
+
+                if (preference.playSoundAfterFailed) {
+                    let audio = new Audio(chrome.runtime.getURL('sounds/error.ogg'));
+                    audio.play().then();
+                }
             }
 
             if (newItem.state !== 'in_progress' || newItem.paused) {

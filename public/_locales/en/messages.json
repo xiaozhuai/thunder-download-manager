@@ -89,6 +89,12 @@
     "notifyAfterFailed": {
         "message": "Notification after failed"
     },
+    "playSoundAfterFinished": {
+        "message": "Play Sound after finished"
+    },
+    "playSoundAfterFailed": {
+        "message": "Play Sound after failed"
+    },
     "currentVersion": {
         "message": "Current Version"
     },
