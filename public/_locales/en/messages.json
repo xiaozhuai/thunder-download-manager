@@ -98,6 +98,9 @@
     "currentVersion": {
         "message": "Current Version"
     },
+    "latestVersion": {
+        "message": "Latest Version"
+    },
     "license": {
         "message": "License"
     },

@@ -99,6 +99,9 @@
     "currentVersion": {
         "message": "當前版本"
     },
+    "latestVersion": {
+        "message": "最新版本"
+    },
     "license": {
         "message": "許可證"
     },

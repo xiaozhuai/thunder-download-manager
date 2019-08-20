@@ -40,9 +40,10 @@
         <el-drawer
                 :title="$tr('aboutPanelTitle')"
                 :visible.sync="aboutPanelVisible"
+                @open="() => { if($refs.aboutPanel) $refs.aboutPanel.updateRepoInfo(); }"
                 direction="btt"
                 size="100%">
-            <about-panel/>
+            <about-panel ref="aboutPanel"/>
         </el-drawer>
     </div>
 </template>
@@ -233,6 +234,7 @@ export default {
 .el-dialog__wrapper {
     overflow: hidden !important;
 }
+
 .el-message-box {
     width: 80%;
 }

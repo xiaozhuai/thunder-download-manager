@@ -9,9 +9,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/xiaozhuai/thunder-download-manager"
+        "url": "https://github.com/xiaozhuai/thunder-download-manager",
+        "license_url": "https://github.com/xiaozhuai/thunder-download-manager/blob/master/LICENSE",
+        "api_url": "https://api.github.com/repos/xiaozhuai/thunder-download-manager",
+        "release_api_url": "https://api.github.com/repos/xiaozhuai/thunder-download-manager/releases"
     },
     "dependencies": {
+        "axios": "^0.19.0",
         "core-js": "^2.6.5",
         "element-ui": "^2.11.0",
         "lodash": "^4.17.15",
