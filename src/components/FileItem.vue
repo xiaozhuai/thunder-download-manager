@@ -205,7 +205,7 @@ export default {
             return `${size} ${unit}`;
         },
         copyLink() {
-            window.navigator.clipboard.writeText(this.item.url).then(() => {
+            window.navigator.clipboard.writeText(this.fileUrl).then(() => {
                 this.$message.success(this.$tr('sucCopyLink'));
             }).catch(() => {
                 this.$message.error(this.$tr('errCopyLink'));
