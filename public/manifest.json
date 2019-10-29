@@ -6,7 +6,7 @@
     "description": "__MSG_extDesc__",
     "default_locale": "en",
     "icons": {
-        "128": "icon.png"
+        "128": "logo.png"
     },
     "permissions": [
         "alarms",
@@ -19,7 +19,7 @@
         "unlimitedStorage"
     ],
     "browser_action": {
-        "default_icon": "icon.png",
+        "default_icon": "logo.png",
         "default_popup": "index.html"
     },
     "offline_enabled": true,
