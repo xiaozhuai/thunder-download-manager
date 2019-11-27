@@ -1,5 +1,7 @@
 # Thunder Download Manager
 
+[English Readme](README.md)
+
 一个极速的Chrome下载管理器!!!
 
 ![preview.jpg](preview.jpg)
@@ -17,7 +19,7 @@
 
 ## TODO
 
-- [ ] 多线程下载
+- [x] 多线程下载
 - [x] 下载完成/失败声音提醒
 - [ ] 新建下载任务时动画效果
 - [x] 自定义添加新下载任务

@@ -1,5 +1,7 @@
 # Thunder Download Manager
 
+[中文说明](README_CN.md)
+
 A super fast download manager for chrome!!!
 
 ![preview.jpg](preview.jpg)
@@ -17,7 +19,7 @@ pr and issue are welcome!
 
 ## TODO
 
-- [ ] Multi-thread download
+- [x] Multi-thread download
 - [x] Play sound after finished/failed
 - [ ] New task created animation 
 - [x] Custom create new task
