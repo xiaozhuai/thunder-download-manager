@@ -1,5 +1,5 @@
 <template>
-    <div class="file-item">
+    <div class="file-item" @dblclick="openFile">
         <div :title="item.state === 'complete' ? $tr('pressToDrag') : ''"
              :style="{cursor: item.state === 'complete' ? 'grab' : 'auto'}"
              draggable="true" ref="draggableNode" style="display: inline-block;">
