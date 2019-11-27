@@ -24,6 +24,9 @@
     "clearAllFailedTitle": {
         "message": "清除下載失敗"
     },
+    "clearAllDeletedTitle": {
+        "message": "清除已刪除"
+    },
     "settingsPanelTitle": {
         "message": "設定"
     },

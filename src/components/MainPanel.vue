@@ -25,6 +25,7 @@
                 <div class="clear-options">
                     <div class="clear-option" @click="clearAllFinished(false)">{{$tr('clearAllFinishedTitle')}}</div>
                     <div class="clear-option" @click="clearAllFailed()">{{$tr('clearAllFailedTitle')}}</div>
+                    <div class="clear-option" @click="clearAllDeleted()">{{$tr('clearAllDeletedTitle')}}</div>
                 </div>
                 <el-button :title="$tr('clearButtonTitle')" circle icon="el-icon-delete" slot="reference"/>
             </el-popover>
@@ -141,6 +142,18 @@ export default {
             this.clearPopoverVisible = false;
             this.$store.state.itemList.forEach(item => {
                 if (item.state === 'interrupted') {
+                    let id = item.id;
+                    chrome.downloads.erase({id: id}, (ids) => {
+                        console.log(`erase ${JSON.stringify(ids, null, 4)}`);
+                        this.$store.commit('removeItemById', id);
+                    });
+                }
+            });
+        },
+        clearAllDeleted() {
+            this.clearPopoverVisible = false;
+            this.$store.state.itemList.forEach(item => {
+                if (!item.exists) {
                     let id = item.id;
                     chrome.downloads.erase({id: id}, (ids) => {
                         console.log(`erase ${JSON.stringify(ids, null, 4)}`);

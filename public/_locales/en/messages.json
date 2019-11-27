@@ -23,6 +23,9 @@
     "clearAllFailedTitle": {
         "message": "Clear All Failed"
     },
+    "clearAllDeletedTitle": {
+        "message": "Clear All Deleted"
+    },
     "settingsPanelTitle": {
         "message": "Settings"
     },
