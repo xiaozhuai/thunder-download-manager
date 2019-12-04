@@ -9,6 +9,9 @@
 ## Chrome 商店
 [https://chrome.google.com/webstore/detail/thunder-download-manager/nllgadppmkoamdlocamdnmimkehhojai](https://chrome.google.com/webstore/detail/thunder-download-manager/nllgadppmkoamdlocamdnmimkehhojai)
 
+## Chrome商店以外的下载
+[crx4chrome](https://www.crx4chrome.com/crx/163978/)
+
 ## 国际化
 
 见 `public/_locales`
