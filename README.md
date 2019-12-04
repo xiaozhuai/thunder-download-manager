@@ -8,6 +8,8 @@ A super fast download manager for chrome!!!
 
 ## Chrome Store
 [https://chrome.google.com/webstore/detail/thunder-download-manager/nllgadppmkoamdlocamdnmimkehhojai](https://chrome.google.com/webstore/detail/thunder-download-manager/nllgadppmkoamdlocamdnmimkehhojai)
+## Download Outside Chrome Store
+[crx4chrome](https://www.crx4chrome.com/crx/163978/)
 
 ## Localization
 
