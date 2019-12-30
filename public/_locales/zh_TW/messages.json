@@ -33,6 +33,9 @@
     "aboutPanelTitle": {
         "message": "關於"
     },
+    "explorerPanelTitle": {
+        "message": "發現"
+    },
     "openFile": {
         "message": "打開文件"
     },
@@ -134,5 +137,8 @@
     },
     "fileRemoved": {
         "message": "已刪除"
+    },
+    "downloadSelectedFiles": {
+        "message": "下載已選中"
     }
 }

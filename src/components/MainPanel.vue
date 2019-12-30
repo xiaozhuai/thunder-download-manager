@@ -29,7 +29,8 @@
                 </div>
                 <el-button :title="$tr('clearButtonTitle')" circle icon="el-icon-delete" slot="reference"/>
             </el-popover>
-            <!--            <el-button :title="$tr('explorerButtonTitle')" circle icon="el-icon-magic-stick"/>-->
+            <el-button :title="$tr('explorerButtonTitle')" circle icon="el-icon-magic-stick"
+                    @click="explorerPanelVisible = true"/>
         </div>
         <el-drawer
                 :title="$tr('settingsPanelTitle')"
@@ -46,6 +47,14 @@
                 size="100%">
             <about-panel ref="aboutPanel"/>
         </el-drawer>
+        <el-drawer
+                :title="$tr('explorerPanelTitle')"
+                :visible.sync="explorerPanelVisible"
+                @open="() => { if($refs.explorerPanel) $refs.explorerPanel.updateFiles(); }"
+                direction="btt"
+                size="100%">
+            <explorer-panel ref="explorerPanel" @click-download="explorerPanelVisible = false"/>
+        </el-drawer>
     </div>
 </template>
 
@@ -53,10 +62,11 @@
 import FileItem from "./FileItem";
 import PreferencePanel from "./PreferencePanel";
 import AboutPanel from "./AboutPanel";
+import ExplorerPanel from "./ExplorerPanel";
 
 export default {
     name: "MainPanel",
-    components: {AboutPanel, PreferencePanel, FileItem},
+    components: {ExplorerPanel, AboutPanel, PreferencePanel, FileItem},
     created() {
         this.loadHistory();
         this.registerMessageListener();
@@ -66,6 +76,7 @@ export default {
             clearPopoverVisible: false,
             preferencePanelVisible: false,
             aboutPanelVisible: false,
+            explorerPanelVisible: false,
             hasShowAcceptDanger: {}
         }
     },
@@ -188,7 +199,7 @@ export default {
 .main-panel > .footer {
     width: 100%;
     height: 40px;
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid #eee;
     box-sizing: border-box;
     padding: 5px 12px;
 }
@@ -250,5 +261,13 @@ export default {
 
 .el-message-box {
     width: 80%;
+}
+
+.el-drawer__header span {
+    outline: none !important;
+}
+
+.el-drawer__close-btn {
+    outline: none !important;
 }
 </style>

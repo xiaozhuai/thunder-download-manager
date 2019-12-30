@@ -32,6 +32,9 @@
     "aboutPanelTitle": {
         "message": "About"
     },
+    "explorerPanelTitle": {
+        "message": "Explorer"
+    },
     "openFile": {
         "message": "Open file"
     },
@@ -133,5 +136,8 @@
     },
     "fileRemoved": {
         "message": "Removed"
+    },
+    "downloadSelectedFiles": {
+        "message": "Download selected"
     }
 }

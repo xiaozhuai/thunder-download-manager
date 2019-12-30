@@ -1,8 +1,6 @@
 <template>
     <div class="file-item" @dblclick="openFile">
-        <div :title="item.state === 'complete' ? $tr('pressToDrag') : ''"
-             :style="{cursor: item.state === 'complete' ? 'grab' : 'auto'}"
-             draggable="true" ref="draggableNode" style="display: inline-block;">
+        <div :title="item.state === 'complete' ? $tr('pressToDrag') : ''" style="display: inline-block;">
             <img class="icon" :src="item.icon" draggable="false" alt="icon"/>
         </div>
         <div class="right-container">
@@ -146,22 +144,6 @@ export default {
         // em......
         chrome.downloads.search({id: this.item.id}, () => {
         });
-
-        this.$refs.draggableNode.ondragstart = () => {
-            chrome.downloads.search({id: this.item.id}, items => {
-                if (items.length === 0) return;
-                let item = items[0];
-                if (item.state === 'complete') {
-                    if (item.exists) {
-                        console.log(`on drag file start, id: ${this.item.id}`);
-                        chrome.downloads.drag(this.item.id);
-                    } else {
-                        this.$message.warning(this.$tr('fileNotExists'));
-                    }
-                }
-            });
-            return false;
-        };
     },
     methods: {
         bytesHumanReadable(size) {

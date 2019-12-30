@@ -28,5 +28,6 @@ pr and issue are welcome!
 - [x] Drag downloaded file
 - [x] Show `accept danger` dialog
 - [x] Use `chrome.i18n`
-- [ ] Grab media files in current tab
+- [x] Grab media files in current tab
+- [ ] Filter media files (filter by image size, audio duration, video duration...)
 - [ ] more...
