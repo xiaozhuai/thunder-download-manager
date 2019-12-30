@@ -25,6 +25,7 @@
 import ImgPopover from "./ImgPopover";
 import VideoPopover from "./VideoPopover";
 import AudioPopover from "./AudioPopover";
+
 export default {
     name: "ExplorerPanel",
     components: {AudioPopover, VideoPopover, ImgPopover},
@@ -65,7 +66,12 @@ export default {
         },
         async updateFiles() {
             this.loading = true;
-            this.tableData = await this.grabAllMediaFiles();
+            try {
+                this.tableData = await this.grabAllMediaFiles();
+            } catch (e) {
+                this.tableData = [];
+                this.$message.error(e.message);
+            }
             this.selectedData = [];
             this.loading = false;
         },
@@ -74,11 +80,14 @@ export default {
                 chrome.tabs.executeScript({
                     file: 'grabber.js'
                 }, result => {
-                    if (result.length === 1) {
-                        resolve(result[0]);
+                    if(chrome.extension.lastError) {
+                        reject(new Error(chrome.extension.lastError.message));
                     } else {
-                        console.error('grabAllMediaFiles failed!');
-                        resolve([]);
+                        if (result.length === 1) {
+                            resolve(result[0]);
+                        } else {
+                            reject(new Error('run grabber.js failed'));
+                        }
                     }
                 });
             });
