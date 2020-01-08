@@ -138,7 +138,13 @@
     "fileRemoved": {
         "message": "已刪除"
     },
+    "paused": {
+        "message": "已暫停"
+    },
     "downloadSelectedFiles": {
         "message": "下載已選中"
+    },
+    "unknownFileSize": {
+        "message": "未知文件大小"
     }
 }

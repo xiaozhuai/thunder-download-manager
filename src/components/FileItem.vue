@@ -72,14 +72,18 @@
                         @click="cancelDownload"/>
             </div>
             <div class="info">
-                <div class="fileSize">{{humanReadableSize || '&nbsp;'}}</div>
+                <div class="fileSize">
+                    {{item.state === 'in_progress' && item.fileSize === 0 ? $tr('unknownFileSize') : humanReadableSize}}
+                </div>
                 <el-progress
                         class="progress"
                         :percentage="percentage"
                         :show-text="false"
-                        v-if="item.state === 'in_progress'"/>
-                <div class="progressText" v-if="item.state === 'in_progress'">{{humanReadablePercentAndSpeed}}</div>
-                <div class="infoText" v-if="item.state !== 'in_progress'">{{infoText}}</div>
+                        v-if="item.state === 'in_progress' && item.fileSize !== 0"/>
+                <div class="right-text">
+                    <div class="progressText" v-if="item.state === 'in_progress'">{{humanReadablePercentAndSpeed}}</div>
+                    <div class="infoText" v-if="item.state !== 'in_progress' || item.paused">{{infoText}}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -114,6 +118,9 @@ export default {
                     }
                 case 'interrupted':
                     return this.$tr('failedDownload');
+                case 'in_progress':
+                    if (this.item.paused) return this.$tr('paused');
+                    else return '';
             }
         },
         fileUrl() {
@@ -127,9 +134,17 @@ export default {
         },
         humanReadablePercentAndSpeed() {
             if (this.percentage === 100 || this.item.paused || this.item.state !== 'in_progress' || !this.item.hasOwnProperty('speed')) {
-                return `${this.percentage}%`;
+                if (this.item.fileSize === 0) {
+                    return '';
+                } else {
+                    return `${this.percentage}%`;
+                }
             } else {
-                return `${this.percentage}%  ${this.bytesHumanReadable(this.item.speed)}/s`
+                if (this.item.fileSize === 0) {
+                    return `${this.bytesHumanReadable(this.item.speed)}/s`;
+                } else {
+                    return `${this.percentage}%  ${this.bytesHumanReadable(this.item.speed)}/s`;
+                }
             }
         }
     },
@@ -147,6 +162,8 @@ export default {
     },
     methods: {
         bytesHumanReadable(size) {
+            if (size === 0) return 0;
+
             let unit = 'B';
 
             if (size > 1024) {
@@ -349,14 +366,21 @@ export default {
     display: none;
 }
 
-.fileSize, .infoText {
+.fileSize, .infoText, .progressText {
     line-height: 18px;
     display: inline-block;
     color: #606060;
+    vertical-align: top;
 }
 
-.infoText {
+.right-text {
+    display: inline-block;
     float: right;
+    right: 12px;
+}
+
+.right-text > * + * {
+    margin-left: 4px;
 }
 
 .progress {
@@ -365,14 +389,5 @@ export default {
     width: 138px;
     vertical-align: top;
     margin-top: 6px;
-}
-
-.progressText {
-    float: right;
-    right: 12px;
-    line-height: 18px;
-    display: inline-block;
-    color: #606060;
-    vertical-align: top;
 }
 </style>

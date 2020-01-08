@@ -139,5 +139,11 @@
     },
     "downloadSelectedFiles": {
         "message": "下载已选中"
+    },
+    "paused": {
+        "message": "已暂停"
+    },
+    "unknownFileSize": {
+        "message": "未知文件大小"
     }
 }

@@ -137,7 +137,13 @@
     "fileRemoved": {
         "message": "Removed"
     },
+    "paused": {
+        "message": "Paused"
+    },
     "downloadSelectedFiles": {
         "message": "Download selected"
+    },
+    "unknownFileSize": {
+        "message": "Unknown File Size"
     }
 }
