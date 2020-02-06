@@ -1,6 +1,6 @@
 <template>
     <div class="explorer-panel" v-loading="loading">
-        <el-table :data="tableData" @selection-change="handleSelectionChange" style="width: 100%;" height="482">
+        <el-table :data="tableData" @selection-change="handleSelectionChange" style="width: 100%;" height="458">
             <el-table-column type="selection" width="42" align="center"/>
             <el-table-column width="54" align="center" label="Type">
                 <i slot-scope="scope" :class="getIcon(scope.row.type)"></i>

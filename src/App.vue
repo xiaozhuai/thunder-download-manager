@@ -21,7 +21,7 @@ html, body, #app {
     margin: 0;
     padding: 0;
     width: 400px;
-    height: 600px;
+    height: 576px;
     overflow: hidden;
 }
 </style>

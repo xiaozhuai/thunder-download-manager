@@ -292,6 +292,7 @@ export default {
     height: 62px;
     border-bottom: 1px solid #eeeeee;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .file-item:hover {

@@ -5,10 +5,13 @@
             <div class="title">{{$tr('extName')}}</div>
         </div>
         <div class="body">
-            <div class="file-list">
-                <template v-for="item of $store.state.itemList">
-                    <file-item :item="item"/>
-                </template>
+            <div class="file-list" v-loading="listLoading">
+                <virtual-list :size="62" :remain="8"
+                              :item="FileItem"
+                              :itemcount="$store.state.itemList.length"
+                              :itemprops="getFileItemProps">
+<!--                    <file-item v-for="item of $store.state.itemList" :item="item"/>-->
+                </virtual-list>
             </div>
         </div>
         <div class="footer">
@@ -63,20 +66,23 @@ import FileItem from "./FileItem";
 import PreferencePanel from "./PreferencePanel";
 import AboutPanel from "./AboutPanel";
 import ExplorerPanel from "./ExplorerPanel";
+import VirtualList from 'vue-virtual-scroll-list'
 
 export default {
     name: "MainPanel",
-    components: {ExplorerPanel, AboutPanel, PreferencePanel, FileItem},
+    components: {ExplorerPanel, AboutPanel, PreferencePanel, FileItem, VirtualList},
     created() {
         this.loadHistory();
         this.registerMessageListener();
     },
     data() {
         return {
+            FileItem: FileItem,
             clearPopoverVisible: false,
             preferencePanelVisible: false,
             aboutPanelVisible: false,
             explorerPanelVisible: false,
+            listLoading: true,
             hasShowAcceptDanger: {}
         }
     },
@@ -89,6 +95,7 @@ export default {
                 }
                 this.$store.commit('setItemList', itemList);
                 this.autoShowAcceptDanger();
+                this.listLoading = false;
             });
         },
         registerMessageListener() {
@@ -172,6 +179,14 @@ export default {
                     });
                 }
             });
+        },
+        getFileItemProps(index) {
+            return {
+                props: {
+                    item: this.$store.state.itemList[index]
+                },
+                attrs: {},
+            }
         }
     }
 }
@@ -225,7 +240,10 @@ export default {
 .file-list {
     width: 100%;
     height: 100%;
-    overflow-y: auto;
+}
+
+.file-list>div::-webkit-scrollbar{
+    display:none;
 }
 
 .file-list .file-item:last-child {
